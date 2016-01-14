@@ -5,15 +5,28 @@
 
   <body>
 
-    {% include header.html %}
+    {% include blog-header.html %}
 
-    <div class="page-content">
-      <div class="wrapper">
-        {{ content }}
-      </div>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <div class="page-content">
+                  <div class="wrapper">
+                    {{ content }}
+                  </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    {% include footer.html %}
+    <br><br>
+    <div class="container text-center">
+        <a href="{{ site.url }}" class="btn btn-primary btn-xl page-scroll">Back to Home</a>
+    </div>
+    <br><br><br>
+
+    {% include contact.html %}
 
   </body>
 

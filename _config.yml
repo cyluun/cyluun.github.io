@@ -1,9 +1,10 @@
 # Site settings
 title: Cyluun inside .
-email:
-description: > # this means to ignore newlines until "baseurl:"
+email: nastormf@gmail.com
+description: > This is Ada's website. Ada is a problem solver.
 baseurl: "" # the subpath of your site, e.g. /blog/
-url: "" # the base hostname & protocol for your site
+url: "http://cyluun.github.io/" # the base hostname & protocol for your site
+permalink: /blog/:title
 
 twitter_username: cyluun
 github_username: cyluun

@@ -1,8 +1,23 @@
 <section id="blog">
     <div class="container-fluid text-center">
-      <div>
-        <h1>BLOG GOES HERE</h1>
-        <p>... soon.</p>
-      </div>
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+                <h2 class="section-heading"><strong>I wrote about...</strong></h2>
+                <hr class="primary">
+                <ul class="fa-ul">
+                    {% for post in site.posts limit 4 %}
+                    <li><i class="fa fa-times"></i>
+                        <span>{{ post.date | date_to_string }}</span> &raquo;
+                        <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a>
+                    </li>
+                    <p>{{ post.content | strip_html | truncatewords:75}}</p>
+                    <br>
+                    <a href="{{ post.url }}">Read more...</a>
+                    <br><br>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        </div>
     </div>
 </section>
