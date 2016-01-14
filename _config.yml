@@ -1,7 +1,7 @@
 # Site settings
 title: Cyluun inside .
 email: nastormf@gmail.com
-description: > This is Ada's website. Ada is a problem solver.
+description: This is Ada's website. Ada is a problem solver.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://cyluun.github.io/" # the base hostname & protocol for your site
 permalink: /blog/:title
