@@ -7,7 +7,7 @@ description:  How do I use os.walk()? Can I tweak os.walk() in order to produce 
 
 Python's os.walk() is a method that walks a directory tree, yielding lists of directory names and file names. If you're not close friends though, it can appear tricky to control. It may flood your screen with hidden files or generally have poor boundaries! This is my effort for you guys to get to know each other a bit better.
 
-##How do I use os.walk()?
+## How do I use os.walk()?
 
 A standard way of walking down a *path* with os.walk() is making a loop:
 
@@ -61,7 +61,7 @@ Which will result in a clean print:
 {% endhighlight %}
 
 
-##But how can I tweak os.walk() in order to produce a customized tree?
+## But how can I tweak os.walk() in order to produce a customized tree?
 
 What if you want to:
 
@@ -74,7 +74,7 @@ What if you want to:
 The plain os.walk() loop can seem like an unstoppable force of nature once provided with a path. It will go through every directory and every file until it can't go no more! [Python's docs][walk] are hinting a solution for that, but let's make it more comprehensible.
 
 
-##How can I exclude hidden directories from os.walk()?
+## How can I exclude hidden directories from os.walk()?
 
 The answer here lies in making a copy of the `dirs` list and filtering the items.
 
@@ -97,7 +97,7 @@ for root, dirs, files in os.walk(path):
 
 With a list comprehension, now our list of directories does not include hidden directories. Moreover, os.walk() won't go into those directories at all. We can do the same with the `files` list.
 
-##How can I exclude other specific directories?
+## How can I exclude other specific directories?
 
 For example, you may have another list of directory names that you want to ignore during your os.walk(). One way to do this would be the same as above, with a list comprehension. Another way of doing it would be to check the `root` each time, and in case it's in the ignore list, empty both the `dirs` and the `files` list.
 
