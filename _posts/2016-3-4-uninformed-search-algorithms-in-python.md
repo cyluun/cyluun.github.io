@@ -2,12 +2,13 @@
 layout: post
 title:  "Uninformed search algorithms in Python"
 date:   2016-3-4
-description:  The main uninformed search strategies are three: Depth-First Search or DFS Breadth-First Search or BFS Uniform Cost Search or UCS.
+description:  The main uninformed search strategies are three. Depth-First Search or DFS Breadth-First Search or BFS Uniform Cost Search or UCS.
 ---
 
 Overall, graph search can fall either under the uninformed or the informed category. The difference between the two is that the first one (uninformed) is naive or blind - meaning it has no knowledge of where the goal could be, while the second one (informed) uses heuristics to guide the search.
 
 The main **uninformed search strategies** are three:
+
 * Depth-First Search or DFS
 * Breadth-First Search or BFS
 * Uniform Cost Search or UCS
@@ -15,7 +16,8 @@ The main **uninformed search strategies** are three:
 ## Making graphs
 
 These algorithms can be applied to traverse graphs or trees. To represent such data structures in Python, all we need to use is a dictionary where the vertices (or nodes) will be stored as keys and the adjacent vertices as values.
-```Python
+
+```python
 small_graph = {
     'A': ['B', 'C'],
     'B': ['D', 'A'],
@@ -23,10 +25,12 @@ small_graph = {
     'D': ['B']
 }
 ```
+
 Alternatively we can create a Node object with lots of attributes, but we'd have to instantiate each node separately, so let's keep things simple. We will use the plain dictionary representation for DFS and BFS and later on we'll implement a Graph class for the Uniform Cost Search.
 
 Keep in mind that we can represent both directed and undirected graphs easily with a dictionary. In the case our small graph was directed it would maybe look something like this.
-```Python
+
+```python
 small_graph = {'A': ['B', 'C'], 'B':['D'], 'C':[], 'D':[]}
 ```
 
@@ -38,7 +42,7 @@ Depth-First Search will visit the first adjacent vertex of the starting point an
 
 A couple of things we need to do in this algorithm is keep track of which vertices we have visited, and also keep track of the *fringe*. The fringe (or frontier) is the collection of vertices that are available for expanding. We will store the fringe in a list commonly called "stack", referring to its ability to pop items from the tail.
 
-```Python
+```python
 def dfs(graph, start, goal):
     visited = set()
     stack = [start]
@@ -60,12 +64,14 @@ def dfs(graph, start, goal):
 It's totally possible to implement BFS with just changing one character from the DFS function above. Let's see why.
 
 The BFS algorithm instead of following a branch down to the bottom, will visit all the vertices of the same depth before moving on deeper. So when choosing which vertex to expand next, it will choose the oldest item on the fringe, unlike DFS which chooses the newest. That's why DFS uses a stack and pops items from the tail, while BFS uses a queue and pops items from the front. So by modifying this line
-```Python
+
+```python
 node = stack.pop(0)
 ```
+
 we now execute a Breadth-First Search. We can make this more efficient though. To cut down on the cost of `pop(0)` we can use a double ended queue called deque. This allows us to append items to both ends.
 
-```Python
+```python
 from collections import deque
 
 def bfs(graph, start, goal):
@@ -91,7 +97,7 @@ This search strategy is for weighted graphs. Each edge has a weight, and vertice
 
 The algorithm needs to know the cost of moving from one vertex to another. On top of that, it needs to know the cumulative cost of the path so far. We'll use a Graph class for UCS, although not absolutely necessary, I want to cover this case and as a plus we keep things a little cleaner.
 
-```Python
+```python
 class Graph:
     def __init__(self):
         self.edges = {}
@@ -107,13 +113,13 @@ Now we can instantiate a graph by making a dictionary for the edges (just like t
 
 The priority in which vertices are expanded is cheapest-first, so we need to turn our plain queue into a priority queue. For that we'll use Python's PriorityQueue. So we'll add this to the top.
 
-```Python
+```python
 from queue import PriorityQueue
 ```
 
 In a way, UCS is very similar to the Breadth-First algorithm; in fact BFS is UCS when all the edge weights are equal. So the implementation will be similar to the previous two. We still use the visited set, while the queue becomes a PriorityQueue that takes tuples in the form of (cost, vertex), which describes the cost of moving to the next vertex.
 
-```Python
+```python
 def ucs(graph, start, goal):
     visited = set()
     queue = PriorityQueue()
@@ -140,11 +146,13 @@ Uniform Cost Search will reach the goal in the cheapest way possible. Breadth-Fi
 
 In order to modify our two optimal algorithms to return the best path, we have to replace our visited set with a `came-from` dictionary. We can then reconstruct the best path and return it.
 
----
+<br>
 
 I highly recommend reading these two articles:
+
 * [Introduction to A*](http://www.redblobgames.com/pathfinding/a-star/introduction.html)
 * [Implementation of A*](http://www.redblobgames.com/pathfinding/a-star/implementation.html)
+
 They build up to A* search (which uses heuristics) by giving lots and lots of awesome info about BFS and UCS (as Dijkstra's algorithm).
 
 I also recommend checking out the [simpleai](https://github.com/simpleai-team/simpleai) Python library.
