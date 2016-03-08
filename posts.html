@@ -1,0 +1,14 @@
+---
+layout: page
+---
+
+<ul class="fa-ul">
+{% for post in site.posts %}
+<li><i class="fa fa-times"></i>
+    <span>{{ post.date | date_to_string }}</span>
+    <a href="{{ BASE_PATH }}{{ post.url }}"><h3 style="font-weight: 600;">{{ post.title }}</h3></a>
+</li>
+
+<br><br>
+{% endfor %}
+</ul>
